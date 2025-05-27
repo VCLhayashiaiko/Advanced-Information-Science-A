@@ -1,12 +1,23 @@
-name: GitHub Action Test
+name: Run HelloWorld
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
-  build-and-run:
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          gcc HelloWorld.c -o hello
-          ./hello
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Compile HelloWorld.c
+      run: gcc HelloWorld.c -o HelloWorld
+
+    - name: Run HelloWorld
+      run: ./HelloWorld
