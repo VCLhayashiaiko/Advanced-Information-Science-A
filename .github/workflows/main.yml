@@ -1,0 +1,12 @@
+name: GitHub Action Test
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          gcc HelloWorld.c -o hello
+          ./hello
